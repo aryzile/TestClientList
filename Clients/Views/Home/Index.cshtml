@@ -1,16 +1,16 @@
-﻿@model List<Clients.Models.Client>
-
-@{
+﻿@{
     ViewBag.Title = "Clients List";
 }
 
-<div class="row">
+<div class="row" ng-app="clientsModule" ng-controller="clientsController">
+  <div ng-init="init()"></div>
   <div>
     <header>
       <h2>Clients</h2>
       <span>found </span>
-      <span class="digits">@Model.Count</span>
+      <span class="digits">{{clients.length}}</span>
     </header>
+    <strong class="error">{{error}}</strong>
     <div id="onlineClock"></div>
     <hr />
     <div class="btn-group">
@@ -39,34 +39,30 @@
           </tr>
         </thead>
         <tbody>
-          @foreach (var client in Model)
-          {
-            <tr>
-              <td>@client.Id</td>
-              <td>@client.Name</td>
-              <td>@client.Description</td>
-              <td>@client.Age</td>
-              <td>@client.RegistrationDate</td>
-              <td>
-                <a class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove" /></a>
-              </td>
-            </tr>
-          }
+          <tr ng-repeat="client in clients">
+            <td>{{client.Id}}</td>
+            <td>{{client.Name}}</td>
+            <td>{{client.Description}}</td>
+            <td>{{client.Age}}</td>
+            <td>{{client.RegistrationDate}}</td>
+            <td>
+              <a class="btn btn-xs btn-danger">
+                <span class="glyphicon glyphicon-remove" />
+              </a>
+            </td>
+          </tr>
         </tbody>
       </table>
     </div>
     <div id="clientsList">
       <div class="list-group">
-        @foreach (var client in Model)
-        {
-          <a href="#" class="list-group-item list-group-item-action align-items-start">
-            <div class="d-flex w-100 justify-content-between">
-              <h4 class="mb-1">@client.Name</h4>
-            </div>
-            <span class="badge badge-default badge-pill">@client.Age</span>
-            <p class="mb-1">@client.Description</p>
-          </a>
-        }
+        <a href="#" class="list-group-item list-group-item-action align-items-start" ng-repeat="client in clients">
+          <div class="d-flex w-100 justify-content-between">
+            <h4 class="mb-1">{{client.Name}}</h4>
+          </div>
+          <span class="badge badge-default badge-pill">{{client.Age}}</span>
+          <p class="mb-1">{{client.Description}}</p>
+        </a>
       </div>
     </div>
   </div>

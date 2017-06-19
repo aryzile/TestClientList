@@ -23,6 +23,11 @@ namespace Clients
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/angularjs").Include(
+                        "~/Scripts/angular.js",
+                        "~/Scripts/dirPagination.js",
+                        "~/Scripts/app/clientsController.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/custom").Include(
                       "~/Scripts/custom.functions.js"));
 
