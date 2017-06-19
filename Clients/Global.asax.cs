@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Clients.DataLayer;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -12,6 +14,8 @@ namespace Clients
     {
         protected void Application_Start()
         {
+            Database.SetInitializer(new ClientsListDbInitializer());
+
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);

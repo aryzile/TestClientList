@@ -11,7 +11,6 @@ namespace Clients.DataLayer
     {
         public ClientsListDbContext() : base("ClientsListDb")
         {
-            Database.SetInitializer(new ClientsListDbInitializer());
         }
 
         public DbSet<Client> Clients { get; set; }
