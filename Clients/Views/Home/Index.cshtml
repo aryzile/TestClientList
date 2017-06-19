@@ -1,12 +1,52 @@
-﻿@{
+﻿@model List<Clients.Models.Client>
+
+@{
     ViewBag.Title = "Clients List";
 }
 
 <div class="row">
-    <div class="col-md-4">
-        <h2>Clients</h2>
-        <table>
-
-        </table>
+  <div>
+    <div>
+      <h2>Clients</h2>
+      <div>found @Model.Count</div>
     </div>
+    <div id="online_clock"></div>
+    <hr />
+    <div class="btn-group">
+      <button class="btn btn-default"><span class="glyphicon glyphicon-list" /> View</button>
+      <button class="btn btn-default"><span class="glyphicon glyphicon-euro" /> Invoice</button>
+      <button class="btn btn-danger"><span class="glyphicon glyphicon-trash" /> Delete</button>
+    </div>
+    <br />
+    <br />
+    <div>
+      <table class="table table-condensed table-bordered table-hover">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Age</th>
+            <th>Registration Date</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          @foreach (var client in Model)
+          {
+              <tr>
+                <td>@client.Id</td>
+                <td>@client.Name</td>
+                <td>@client.Description</td>
+                <td>@client.Age</td>
+                <td>@client.RegistrationDate</td>
+                <td>
+                  <a class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove" /></a>
+                </td>
+              </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
