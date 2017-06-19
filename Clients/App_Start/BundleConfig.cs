@@ -24,7 +24,7 @@ namespace Clients
                       "~/Scripts/respond.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/custom").Include(
-                      "~/Scripts/onlineClock.js"));
+                      "~/Scripts/custom.functions.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",

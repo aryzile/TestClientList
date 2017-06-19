@@ -22,3 +22,24 @@ select,
 textarea {
     max-width: 280px;
 }
+
+header > h2 { 
+    display: inline-block;
+}
+
+header span {
+    font-size: large;
+    color: gray;
+}
+
+header span.digits {
+    font-weight: bold;
+}
+
+#clientsTable {
+    display: block;
+}
+
+#clientsList {
+    display: none;
+}

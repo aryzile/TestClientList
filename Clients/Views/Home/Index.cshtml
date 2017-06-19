@@ -6,20 +6,27 @@
 
 <div class="row">
   <div>
-    <div>
+    <header>
       <h2>Clients</h2>
-      <div>found @Model.Count</div>
-    </div>
-    <div id="online_clock"></div>
+      <span>found </span>
+      <span class="digits">@Model.Count</span>
+    </header>
+    <div id="onlineClock"></div>
     <hr />
     <div class="btn-group">
-      <button class="btn btn-default"><span class="glyphicon glyphicon-list" /> View</button>
-      <button class="btn btn-default"><span class="glyphicon glyphicon-euro" /> Invoice</button>
-      <button class="btn btn-danger"><span class="glyphicon glyphicon-trash" /> Delete</button>
+      <button class="btn btn-default" onclick="switchView()">
+        <span class="glyphicon glyphicon-list" /> View
+      </button>
+      <button class="btn btn-default">
+        <span class="glyphicon glyphicon-euro" /> Invoice
+      </button>
+      <button class="btn btn-danger">
+        <span class="glyphicon glyphicon-trash" /> Delete
+      </button>
     </div>
     <br />
     <br />
-    <div>
+    <div id="clientsTable">
       <table class="table table-condensed table-bordered table-hover">
         <thead>
           <tr>
@@ -34,19 +41,33 @@
         <tbody>
           @foreach (var client in Model)
           {
-              <tr>
-                <td>@client.Id</td>
-                <td>@client.Name</td>
-                <td>@client.Description</td>
-                <td>@client.Age</td>
-                <td>@client.RegistrationDate</td>
-                <td>
-                  <a class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove" /></a>
-                </td>
-              </tr>
+            <tr>
+              <td>@client.Id</td>
+              <td>@client.Name</td>
+              <td>@client.Description</td>
+              <td>@client.Age</td>
+              <td>@client.RegistrationDate</td>
+              <td>
+                <a class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove" /></a>
+              </td>
+            </tr>
           }
         </tbody>
       </table>
+    </div>
+    <div id="clientsList">
+      <div class="list-group">
+        @foreach (var client in Model)
+        {
+          <a href="#" class="list-group-item list-group-item-action align-items-start">
+            <div class="d-flex w-100 justify-content-between">
+              <h4 class="mb-1">@client.Name</h4>
+            </div>
+            <span class="badge badge-default badge-pill">@client.Age</span>
+            <p class="mb-1">@client.Description</p>
+          </a>
+        }
+      </div>
     </div>
   </div>
 </div>
