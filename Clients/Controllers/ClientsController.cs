@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Description;
 
 namespace Clients.Controllers
 {
@@ -17,6 +18,23 @@ namespace Clients.Controllers
         public IQueryable<Client> GetClients()
         {
             return db.Clients;
+        }
+
+        // DELETE: api/Clients/5
+        [ResponseType(typeof(Client))]
+        public IHttpActionResult DeleteClient(int id)
+        {
+            Client client = db.Clients.Find(id);
+
+            if (client == null)
+            {
+                return NotFound();
+            }
+
+            db.Clients.Remove(client);
+            db.SaveChanges();
+
+            return Ok(client);
         }
 
         protected override void Dispose(bool disposing)

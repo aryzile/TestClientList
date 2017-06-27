@@ -43,3 +43,7 @@ header span.digits {
 #clientsList {
     display: none;
 }
+
+#pageSizeSelect {
+    padding: 20px 0px;
+}

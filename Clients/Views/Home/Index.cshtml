@@ -38,14 +38,14 @@
           </tr>
         </thead>
         <tbody>
-          <tr ng-repeat="client in clients">
+          <tr dir-paginate="client in clients|itemsPerPage:pageSize">
             <td>{{client.Id}}</td>
             <td>{{client.Name}}</td>
             <td>{{client.Description}}</td>
             <td>{{client.Age}}</td>
-            <td>{{client.RegistrationDate}}</td>
+            <td>{{client.TextDate}}</td>
             <td>
-              <a class="btn btn-xs btn-danger">
+              <a class="btn btn-xs btn-danger" ng-href="#delete" ng-click="delete(client.Id)">
                 <span class="glyphicon glyphicon-remove" />
               </a>
             </td>
@@ -55,13 +55,30 @@
     </div>
     <div id="clientsList">
       <div class="list-group">
-        <a href="#" class="list-group-item list-group-item-action align-items-start" ng-repeat="client in clients">
-          <div class="d-flex w-100 justify-content-between">
-            <h4 class="mb-1">{{client.Name}}</h4>
-          </div>
-          <span class="badge badge-default badge-pill">{{client.Age}}</span>
-          <p class="mb-1">{{client.Description}}</p>
-        </a>
+        <div dir-paginate="client in clients|itemsPerPage:pageSize">
+          <a href="#" class="list-group-item list-group-item-action align-items-start">
+            <div class="d-flex w-100 justify-content-between">
+              <h4 class="mb-1">{{client.Name}}</h4>
+            </div>
+            <span class="badge badge-default badge-pill">{{client.Age}}</span>
+            <p class="mb-1">{{client.Description}}</p>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="col-xs-10">
+        <div id="pagination">
+          <dir-pagination-controls template-url="/Scripts/dirPagination.tpl.html" max-size="10"
+                                   direction-links="false" boundary-links="false" />
+        </div>
+      </div>
+      <div class="col-xs-2">
+        <div id="pageSizeSelect" class="form-group">
+          <select class="form-control" ng-init="pageSize = options[0].value" ng-model="pageSize">
+            <option ng-repeat="option in options" ng-value="option.value">{{option.name}}</option>
+          </select>
+        </div> 
       </div>
     </div>
   </div>
