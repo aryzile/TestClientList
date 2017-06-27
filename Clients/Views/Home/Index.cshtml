@@ -38,7 +38,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr dir-paginate="client in clients|itemsPerPage:pageSize">
+          <tr dir-paginate="client in clients|itemsPerPage:pageSize" class="clickable-row">
             <td>{{client.Id}}</td>
             <td>{{client.Name}}</td>
             <td>{{client.Description}}</td>

@@ -23,8 +23,6 @@
                     for (var i = 0; i < $scope.clients.length; i++) {
                         $scope.clients[i].TextDate = formatDate(new Date($scope.clients[i].RegistrationDate));
                     }
-
-                    $scope.clients2 = clients;
                 }
                 , function () {
                     $scope.error = "An error has occured while loading data!";

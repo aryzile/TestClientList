@@ -38,3 +38,12 @@ function switchView() {
     table.style.display = list.style.display;
     list.style.display = temp;
 }
+
+$('#clientsTable').on('click', '.clickable-row', function (event) {
+    $(this).addClass('active').siblings().removeClass('active');
+});
+
+$('#clientsList').on('click', '.list-group-item', function (event) {
+    $('.list-group-item').removeClass('active');
+    $(this).addClass('active');
+});
