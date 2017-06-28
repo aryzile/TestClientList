@@ -12,19 +12,22 @@
     <strong class="error">{{error}}</strong>
     <div id="onlineClock"></div>
     <hr />
-    <div class="btn-group">
+    <div class="btn-group" id="buttonsGroup">
       <button class="btn btn-default" onclick="switchView()">
-        <span class="glyphicon glyphicon-list" /> View
+        <span class="glyphicon glyphicon-list" />
+        <span class="button-text">View</span>
       </button>
-      <button class="btn btn-default">
-        <span class="glyphicon glyphicon-euro" /> Invoice
+      <button class="btn btn-default" ng-click="getXml()">
+        <span class="glyphicon glyphicon-euro" />
+        <span class="button-text">Invoice</span>
       </button>
-      <button class="btn btn-danger">
-        <span class="glyphicon glyphicon-trash" /> Delete
+      <button class="btn btn-danger" ng-click="delete()">
+        <span class="glyphicon glyphicon-trash" />
+        <span class="button-text">Delete</span>
       </button>
     </div>
-    <br />
-    <br />
+    @*<br />
+    <br />*@
     <div id="clientsTable">
       <table class="table table-condensed table-bordered table-hover">
         <thead>
@@ -45,7 +48,7 @@
             <td>{{client.Age}}</td>
             <td>{{client.TextDate}}</td>
             <td>
-              <a class="btn btn-xs btn-danger" ng-href="#delete" ng-click="delete(client.Id)">
+              <a class="btn btn-xs btn-danger" ng-href="#delete" ng-click="deleteClient(client.Id)">
                 <span class="glyphicon glyphicon-remove" />
               </a>
             </td>
@@ -57,6 +60,7 @@
       <div class="list-group">
         <div dir-paginate="client in clients|itemsPerPage:pageSize">
           <a href="#" class="list-group-item list-group-item-action align-items-start">
+            <div style="display: none">{{client.Id}}</div>
             <div class="d-flex w-100 justify-content-between">
               <h4 class="mb-1">{{client.Name}}</h4>
             </div>

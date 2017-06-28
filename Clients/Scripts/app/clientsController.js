@@ -31,7 +31,7 @@
 
         getClients();
 
-        $scope.delete = function (clientId) {
+        $scope.deleteClient = function (clientId) {
             var client = null;
 
             for (var i = 0; i < $scope.clients.length; i++) {
@@ -40,11 +40,11 @@
                 }
             }
 
-            if (confirm('Do you really want to delete ' + client.Name + ' ?\n' +
-                        'This client has been with you since ' + client.RegistrationDate)) {
+            if (confirm('Do you really want to delete ' + client.Name + '?\n' +
+                        'This client has been with you since ' + client.TextDate)) {
 
-                var i = $scope.clients.indexOf(client);
-                $scope.clients.splice(i, 1);
+                var i = $scope.clients.indexOf(client);     // safe delete
+                $scope.clients.splice(i, 1);                // for real delete uncomment lines below
 
                 //$http.delete('/api/Clients/' + clientId)
                 //    .then(function (data, status, headers, config) {
@@ -56,4 +56,48 @@
             }
         };
 
+
+        function getActiveRowId () {
+            return parseInt($('tr.active td')[0].firstChild.data);
+        }
+
+        function getActiveItemId() {
+            return parseInt($('#clientsList .list-group-item.active')[0].children[0].innerText);
+        }
+
+        $scope.getXml = function () {
+            var clientId = 0;
+
+            if ($('#clientsTable').css('display') == 'block') {         // if table enabled
+                clientId = getActiveRowId();
+            }
+            else if ($('#clientsList').css('display') == 'block') {     // if list enabled
+                clientId = getActiveItemId();
+            }
+
+            if (clientId != 0) {
+                $http.get('/api/Clients/' + clientId)
+                .then(function (response) {
+                    window.location = '/api/Clients/' + clientId;
+                }
+                , function () {
+                    $scope.error = "An error has occured while loading data!";
+                });
+            }
+        };
+
+        $scope.delete = function () {
+            var clientId = 0;
+
+            if ($('#clientsTable').css('display') == 'block') {         // if table enabled
+                clientId = getActiveRowId();
+            }
+            else if ($('#clientsList').css('display') == 'block') {     // if list enabled
+                clientId = getActiveItemId();
+            }
+
+            if (clientId != 0) {
+                $scope.deleteClient(clientId);
+            }
+        }
     });

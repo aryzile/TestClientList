@@ -32,12 +32,24 @@ header span {
     color: gray;
 }
 
+span.button-text {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
 header span.digits {
     font-weight: bold;
 }
 
+#buttonsGroup {
+    padding-bottom: 20px;
+}
+
 #clientsTable {
     display: block;
+}
+
+#clientsTable tr {
+    cursor: pointer;
 }
 
 #clientsList {
