@@ -1,4 +1,5 @@
-﻿function startTime() {
+﻿// client-side online clock
+function startTime() {
     var today = new Date();
     var h = today.getHours();
     var m = today.getMinutes();
@@ -23,7 +24,7 @@ function checkTime(i) {
 
 document.onload = startTime();
 
-
+// switch between table and list representation
 function switchView() {
     var list = document.getElementById('clientsList');
     var table = document.getElementById('clientsTable');
@@ -39,10 +40,12 @@ function switchView() {
     list.style.display = temp;
 }
 
+// for table row selection
 $('#clientsTable').on('click', '.clickable-row', function (event) {
     $(this).addClass('active').siblings().removeClass('active');
 });
 
+// for list item selection
 $('#clientsList').on('click', '.list-group-item', function (event) {
     $('.list-group-item').removeClass('active');
     $(this).addClass('active');
